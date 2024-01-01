@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useLoginMutation } from '@/network/module/auth';
 import { setCookie } from 'cookies-next';
-
+import { toast } from 'react-toastify';
 interface FormInput {
   username: string;
   password: string;
@@ -19,6 +19,7 @@ const Index: React.FC = () => {
       // Use discriminated union to handle different response types
       if ('data' in response && response.data) {
         const accessToken = response.data.token;
+        toast.success('Login success');
 
         // Check if accessToken exists before setting the cookie
         if (accessToken) {
